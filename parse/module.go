@@ -5,6 +5,13 @@ import (
 	"fmt"
 )
 
+type JsonConfig struct{
+	Focus string
+	Mode string
+	Auto bool
+	Os string
+}
+
 type JsonFull struct{
 	Num int
 	Date string
@@ -25,14 +32,24 @@ type JsonTeachers struct{
 	Zoom string
 }
 
-func ParseFull(j []byte) []JsonFull{
+func ParseConfig(j []byte) JsonConfig{
+	var conf []JsonConfig
+	err := json.Unmarshal(j, &conf)
+	if err != nil{
+		fmt.Println(err)
+	}
+	
+	return conf[0]
+}
+
+func ParseFull(j []byte) ([]JsonFull, int){
 	var groups []JsonFull
 	err := json.Unmarshal(j, &groups)
 	if err != nil{
 		fmt.Println(err)
 	}
 	
-	return groups
+	return groups, groups[0].Dist
 }
 
 func ParseGroup(j []byte) []JsonGroup{

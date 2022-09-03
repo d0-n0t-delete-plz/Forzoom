@@ -1,7 +1,8 @@
 [
     {
         "focus": "9ССА-271К-21",
-        "mode": "s",
-        "inteface": "cli"
+        "mode": "student",
+        "auto": true,
+        "os": "windows"
     }
 ]
