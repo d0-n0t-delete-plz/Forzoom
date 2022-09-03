@@ -32,6 +32,12 @@ type JsonTeachers struct{
 	Zoom string
 }
 
+type JsonTime struct{
+	NumberLesson int
+	Begin string
+	End string
+}
+
 func ParseConfig(j []byte) JsonConfig{
 	var conf []JsonConfig
 	err := json.Unmarshal(j, &conf)
@@ -70,4 +76,14 @@ func ParseTeacher(j []byte) []JsonTeachers{
 	}
 
 	return teachers
+}
+
+func ParseTime(j []byte) []JsonTime{
+	var time []JsonTime
+	err := json.Unmarshal(j, &time)
+	if err != nil{
+		fmt.Println(err)
+	}
+
+	return time
 }
