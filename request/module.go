@@ -90,7 +90,7 @@ func GetTeachers(token string)[]parse.JsonTeachers{
 }
 
 func GetTime(date, token string)[]parse.JsonTime{
-	req, err := http.NewRequest("GET", "https://api.ukrtb.ru/api/getTeacherSchedule?date="+date, nil)
+	req, err := http.NewRequest("GET", "https://api.ukrtb.ru/api/getTime?date="+date, nil)
 	if err != nil {fmt.Println(err)}
 	req.Header.Add("apikey", token)
 	
