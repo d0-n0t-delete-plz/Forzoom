@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	// token string = os.Getenv("TOKEN_STUDY")
+	token string = os.Getenv("TOKEN_STUDY")
 	client = http.Client{}
 )
 
@@ -33,7 +33,7 @@ func ReadConfig() parse.JsonConfig{
 	return config
 }
 
-func GetGroupSchedule(group, date, token string) ([]parse.JsonFull, int){
+func GetGroupSchedule(group, date string) ([]parse.JsonFull, int){
 	req, err := http.NewRequest("GET", "https://api.ukrtb.ru/api/getGroupSchedule?group="+group+"&date="+date, nil)
 	if err != nil {fmt.Println(err)}
 	req.Header.Add("apikey", token)
@@ -47,7 +47,7 @@ func GetGroupSchedule(group, date, token string) ([]parse.JsonFull, int){
 	return parse.ParseFull(buf)
 }
 
-func GetTeacherSchedule(teacher, date, token string) ([]parse.JsonFull, int){
+func GetTeacherSchedule(teacher, date string) ([]parse.JsonFull, int){
 	req, err := http.NewRequest("GET", "https://api.ukrtb.ru/api/getTeacherSchedule?teacher="+teacher+"&date="+date, nil)
 	if err != nil {fmt.Println(err)}
 	req.Header.Add("apikey", token)
@@ -61,7 +61,7 @@ func GetTeacherSchedule(teacher, date, token string) ([]parse.JsonFull, int){
 	return parse.ParseFull(buf)
 }
 
-func GetGroups(token string)[]parse.JsonGroup{
+func GetGroups()[]parse.JsonGroup{
 	req, err := http.NewRequest("GET", "https://api.ukrtb.ru/api/getGroups", nil)
 	if err != nil {fmt.Println(err)}
 	req.Header.Add("apikey", token)
@@ -75,7 +75,7 @@ func GetGroups(token string)[]parse.JsonGroup{
 	return parse.ParseGroup(buf)
 }
 
-func GetTeachers(token string)[]parse.JsonTeachers{
+func GetTeachers()[]parse.JsonTeachers{
 	req, err := http.NewRequest("GET", "https://api.ukrtb.ru/api/getTeachers", nil)
 	if err != nil {fmt.Println(err)}
 	req.Header.Add("apikey", token)
@@ -89,7 +89,7 @@ func GetTeachers(token string)[]parse.JsonTeachers{
 	return parse.ParseTeacher(buf)
 }
 
-func GetTime(date, token string)[]parse.JsonTime{
+func GetTime(date string)[]parse.JsonTime{
 	req, err := http.NewRequest("GET", "https://api.ukrtb.ru/api/getTime?date="+date, nil)
 	if err != nil {fmt.Println(err)}
 	req.Header.Add("apikey", token)
