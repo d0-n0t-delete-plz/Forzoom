@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	// token = request.Token() // На windows
+	// token = request.Token() // На windows в go run
 	token = os.Getenv("TOKEN_STUDY")
 	date = "2022-09-03"
 	lendash = 60
