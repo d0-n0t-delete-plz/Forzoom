@@ -4,15 +4,13 @@ import (
 	"fmt"
 	"Forzoom/request"
 	"strings"
-	"time"
 )
 
 var (
-	date = string([]rune(time.Now().Format(time.RFC3339))[0:10])
-	lendash = 50
+	lendash = 30
 )
 
-func PrintCli(mod, focus string) (string, []Less){
+func PrintCli(mod, focus, date string) (string, []Less){
 	time := request.GetTime(date)
 	var (
 		less []Less
